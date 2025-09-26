@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';  // Necesario para directivas es
 import { RouterModule } from '@angular/router';  // Para poder usar enlaces con routerLink en la vista
 
 // Decorador @Component: define las características del componente
+//@Component: Convierte la clase en un componente de Angular, indicando cómo se va a usar y qué archivos (HTML, CSS, dependencias) tiene vinculados.
 @Component({
   selector: 'app-profile',                       // Nombre de la etiqueta que se usará en HTML (<app-profile>)
   standalone: true,                              // Componente standalone (no necesita declararse en un módulo)

@@ -1,5 +1,12 @@
 // src/app/login/login.component.ts
 
+// Este componente maneja el inicio de sesión de usuarios.
+// - Muestra un formulario con email y contraseña.
+// - Valida los datos ingresados.
+// - Usa AuthService para autenticar contra Firebase u otro backend.
+// - Si el login es exitoso, redirige al usuario a la página principal.
+// - Si falla, muestra un mensaje de error en pantalla.
+
 // Importaciones necesarias desde Angular y librerías asociadas
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';

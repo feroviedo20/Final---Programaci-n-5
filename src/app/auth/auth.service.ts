@@ -21,6 +21,7 @@ export interface AppUser {
   createdAt?: Date;         // Fecha de creación del perfil
 }
 
+//El decorador indica que es un servicio
 @Injectable({
   providedIn: 'root' // Disponible en toda la aplicación sin necesidad de declararlo en un módulo
 })

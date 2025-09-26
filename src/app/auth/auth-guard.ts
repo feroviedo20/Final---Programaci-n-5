@@ -3,6 +3,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthService } from './auth.service';
 
 // Decorador que marca la clase como inyectable y disponible en toda la app
+//El decorador @Injectable se usa para marcar una clase como un servicio que puede 
+// ser inyectado en otros lugares (componentes, otros servicios, etc.)
 @Injectable({
   providedIn: 'root' // Se provee a nivel raíz, no hace falta declararlo en un módulo
 })
