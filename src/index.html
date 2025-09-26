@@ -1,13 +1,49 @@
+<!--
+============================================
+Archivo: index.html
+
+Este archivo es la plantilla HTML principal
+que carga Angular al iniciar la aplicación.
+
+En general:
+- Define la estructura base del documento HTML.
+- Contiene la etiqueta raíz <app-root> donde Angular
+  inyectará y renderizará la aplicación.
+- Incluye metadatos básicos (charset, viewport, título).
+- Define el icono de la aplicación (favicon).
+
+Es el primer archivo que recibe el navegador
+y a partir de aquí Angular toma el control.
+============================================
+-->
+
 <!doctype html>
 <html lang="en">
+
 <head>
+  <!-- Define el conjunto de caracteres utilizado -->
   <meta charset="utf-8">
+
+  <!-- Título de la aplicación que aparece en la pestaña del navegador -->
   <title>ParcialApi</title>
+
+  <!-- Define la URL base para las rutas relativas en Angular -->
   <base href="/">
+
+  <!-- Configuración para diseño responsivo en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Icono que aparece en la pestaña del navegador -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
+  <!-- 
+    Este es el "componente raíz" de Angular.
+    Aquí se inyecta dinámicamente toda la aplicación.
+    Lo que esté definido en AppComponent se renderizará dentro de esta etiqueta.
+  -->
   <app-root></app-root>
 </body>
+
 </html>

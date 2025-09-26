@@ -18,40 +18,42 @@ export class CharacterTableComponent implements OnInit {
   private readonly API_SEARCH_URL = 'https://rickandmortyapi.com/api/character/?name=';
 
   // Estado del componente
-  characters: Character[] = [];
-  filteredCharacters: Character[] | null = null; // Cambiado a null inicial
-  sortDirection: 'asc' | 'desc' = 'asc';
-  showNotesInputId: number | null = null;
-  notesText: string = '';
-  searchTerm: string = '';
-  isLoading: boolean = false;
-  errorMessage: string | null = null;
+  characters: Character[] = []; // Lista completa de personajes obtenidos de la API
+  filteredCharacters: Character[] | null = null; // Lista filtrada, inicia en null
+  sortDirection: 'asc' | 'desc' = 'asc'; // Dirección de ordenamiento
+  showNotesInputId: number | null = null; // ID del personaje al que se le están editando notas
+  notesText: string = ''; // Texto de las notas en edición
+  searchTerm: string = ''; // Término de búsqueda
+  isLoading: boolean = false; // Estado de carga
+  errorMessage: string | null = null; // Mensaje de error en caso de fallo
 
   constructor(
-    private http: HttpClient,
-    private favoritesService: FavoritesService,
-    private cdRef: ChangeDetectorRef
-  ) {}
+    private http: HttpClient, // Para hacer peticiones HTTP
+    private favoritesService: FavoritesService, // Servicio para manejar favoritos
+    private cdRef: ChangeDetectorRef // Detectar cambios manualmente en la vista
+  ) { }
 
+  // Se ejecuta al inicializar el componente
   ngOnInit(): void {
     this.loadCharacters();
   }
 
-  // Carga inicial de personajes
+  // Carga inicial de personajes desde la API
   loadCharacters(): void {
     this.isLoading = true;
     this.errorMessage = null;
     this.filteredCharacters = null;
-    
-    this.http.get<{results: Character[]}>(this.API_URL).subscribe({
+
+    this.http.get<{ results: Character[] }>(this.API_URL).subscribe({
       next: (response) => {
+        // Enriquecer personajes con info adicional
         this.characters = response.results.map(char => ({
           ...this.enrichCharacterData(char),
           imageLoaded: false
         }));
         this.filteredCharacters = [...this.characters];
         this.isLoading = false;
-        this.cdRef.detectChanges();
+        this.cdRef.detectChanges(); // Refresca la vista
       },
       error: (err) => {
         this.errorMessage = 'Error al cargar personajes. Por favor, intenta nuevamente.';
@@ -63,17 +65,17 @@ export class CharacterTableComponent implements OnInit {
     });
   }
 
-  // Búsqueda de personajes
+  // Búsqueda de personajes por nombre
   searchCharacters(searchTerm: string): void {
     const term = searchTerm.trim();
-    
+
     if (!term) {
       this.filteredCharacters = [...this.characters];
       return;
     }
 
     this.isLoading = true;
-    this.http.get<{results: Character[]}>(`${this.API_SEARCH_URL}${encodeURIComponent(term)}`).subscribe({
+    this.http.get<{ results: Character[] }>(`${this.API_SEARCH_URL}${encodeURIComponent(term)}`).subscribe({
       next: (response) => {
         this.filteredCharacters = response.results.map(char => ({
           ...this.enrichCharacterData(char),
@@ -90,7 +92,7 @@ export class CharacterTableComponent implements OnInit {
     });
   }
 
-  // Enriquecer datos del personaje
+  // Agrega propiedades adicionales a cada personaje
   private enrichCharacterData(character: Character): Character {
     return {
       ...character,
@@ -100,12 +102,13 @@ export class CharacterTableComponent implements OnInit {
     };
   }
 
-  // Manejo de imágenes
+  // Manejo de carga de imágenes
   handleImageLoad(character: Character): void {
     character.imageLoaded = true;
     this.cdRef.detectChanges();
   }
 
+  // Manejo de error en imágenes (usa imagen por defecto)
   handleImageError(event: Event, character: Character): void {
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = 'assets/default-character.png';
@@ -113,7 +116,7 @@ export class CharacterTableComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
-  // Métodos para favoritos
+  // Alterna entre agregar o quitar un personaje de favoritos
   toggleFavorite(character: Character): void {
     if (this.favoritesService.isFavorite(character.id)) {
       this.favoritesService.removeFavorite(character.id);
@@ -123,9 +126,10 @@ export class CharacterTableComponent implements OnInit {
     this.updateCharacterInList(character.id);
   }
 
+  // Refresca los datos de un personaje dentro de la lista filtrada
   private updateCharacterInList(id: number): void {
     if (!this.filteredCharacters) return;
-    
+
     const index = this.filteredCharacters.findIndex(c => c.id === id);
     if (index !== -1) {
       this.filteredCharacters[index] = this.enrichCharacterData(this.filteredCharacters[index]);
@@ -133,17 +137,19 @@ export class CharacterTableComponent implements OnInit {
     }
   }
 
-  // Manejo de notas
+  // Obtiene notas guardadas de un personaje favorito
   getFavoriteNotes(id: number): string {
     const favorite = this.favoritesService.getFavorite(id);
     return favorite?.notes || '';
   }
 
+  // Inicia la edición de notas de un personaje
   startEditingNotes(character: Character): void {
     this.showNotesInputId = character.id;
     this.notesText = this.getFavoriteNotes(character.id);
   }
 
+  // Guarda notas de un personaje en favoritos
   saveNotes(character: Character): void {
     if (this.notesText.trim()) {
       this.favoritesService.updateFavoriteNotes(character.id, this.notesText);
@@ -152,27 +158,28 @@ export class CharacterTableComponent implements OnInit {
     this.cancelEditing();
   }
 
+  // Cancela la edición de notas
   cancelEditing(): void {
     this.showNotesInputId = null;
     this.notesText = '';
   }
 
-  // Ordenación
+  // Ordena la tabla por columna
   sortTable(sortBy: keyof Character): void {
     if (!this.filteredCharacters) return;
-    
+
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    
+
     this.filteredCharacters.sort((a, b) => {
       const aValue = a[sortBy] ?? '';
       const bValue = b[sortBy] ?? '';
-      return this.sortDirection === 'asc' 
+      return this.sortDirection === 'asc'
         ? String(aValue).localeCompare(String(bValue))
         : String(bValue).localeCompare(String(aValue));
     });
   }
 
-  // Carga de ubicación
+  // Carga la ubicación de un personaje al pasar el mouse
   loadLocation(character: Character): void {
     if (!character.locationName || character.locationName === 'Desconocido') {
       this.http.get<Character>(`${this.API_URL}/${character.id}`).subscribe({

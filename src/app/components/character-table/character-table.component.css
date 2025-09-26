@@ -1,4 +1,4 @@
-/* Estilos generales */
+/* Estilos generales para el buscador */
 .search-container {
   display: flex;
   gap: 10px;
@@ -7,6 +7,7 @@
 
 .search-container input {
   flex: 1;
+  /* El input ocupa todo el espacio disponible */
   padding: 10px;
   border: 1px solid var(--portal-blue);
   border-radius: var(--radius-sm);
@@ -27,13 +28,14 @@
 .character-table {
   width: 100%;
   border-collapse: collapse;
+  /* Quita espacios entre celdas */
   margin: 20px 0;
   background-color: rgba(15, 23, 42, 0.8);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
-.character-table th, 
+.character-table th,
 .character-table td {
   padding: 12px 15px;
   text-align: left;
@@ -44,7 +46,9 @@
   background-color: rgba(0, 192, 255, 0.1);
   color: var(--portal-blue);
   font-family: 'Get Schwifty', cursive;
+  /* Fuente personalizada estilo Rick and Morty */
   cursor: pointer;
+  /* Indica que son clicables (ordenamiento) */
 }
 
 .character-table tr:hover td {
@@ -56,19 +60,24 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  /* Hace que sea circular */
   object-fit: cover;
+  /* Ajusta la imagen sin deformarla */
   border: 2px solid var(--portal-blue);
   box-shadow: 0 0 10px rgba(0, 192, 255, 0.3);
   transition: all 0.3s ease;
   opacity: 0;
+  /* Oculta inicialmente para animar al cargar */
 }
 
 .character-image.loaded {
   opacity: 1;
+  /* Se muestra cuando está cargada */
 }
 
 .character-image:hover {
   transform: scale(1.1);
+  /* Efecto zoom */
   box-shadow: 0 0 15px var(--portal-green);
 }
 
@@ -89,7 +98,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error-message {
@@ -124,15 +135,31 @@
 
 .favorite-btn.favorite {
   color: var(--neon-pink);
+  /* Se pinta en rosa cuando es favorito */
   animation: heartBeat 0.5s;
+  /* Animación al agregar */
 }
 
 @keyframes heartBeat {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.3); }
-  50% { transform: scale(1); }
-  75% { transform: scale(1.3); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.3);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .notes-section {

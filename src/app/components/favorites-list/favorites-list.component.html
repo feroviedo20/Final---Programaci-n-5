@@ -1,43 +1,62 @@
 <!-- src/app/components/favorites-list/favorites-list.component.html -->
 <div class="favorites-container">
+  <!-- Título principal de la lista de favoritos -->
   <h2>Mis Personajes Favoritos</h2>
-  
+
+  <!-- Se obtiene la lista de favoritos del servicio mediante un observable -->
   <div *ngIf="favoritesService.getFavorites() | async as favorites">
+
+    <!-- Si no hay personajes en favoritos, se muestra un mensaje -->
     <div *ngIf="favorites.length === 0" class="no-favorites">
-      No tienes personajes favoritos todavía. 
+      No tienes personajes favoritos todavía.
+      <!-- Enlace para volver a la página principal -->
       <a routerLink="/">¡Explora los personajes!</a>
     </div>
-    
+
+    <!-- Contenedor en forma de grilla para mostrar los favoritos -->
     <div class="favorites-grid">
+
+      <!-- Iteración sobre cada personaje favorito -->
       <div *ngFor="let favorite of favorites" class="favorite-card">
+
+        <!-- Imagen y nombre del personaje -->
         <img [src]="favorite.image" [alt]="favorite.name">
         <h3>{{ favorite.name }}</h3>
+
+        <!-- Datos adicionales del personaje -->
         <p>Estado: {{ favorite.status }}</p>
         <p>Especie: {{ favorite.species }}</p>
-        
+
+        <!-- Sección de notas cuando NO se está editando -->
         <div *ngIf="editingNotesId !== favorite.id" class="notes-section">
+          <!-- Si existen notas guardadas, se muestran -->
           <p *ngIf="favorite.notes">{{ favorite.notes }}</p>
+
+          <!-- Botón para añadir o editar notas -->
           <button (click)="startEditing(favorite)" class="edit-btn">
             {{ favorite.notes ? 'Editar' : 'Añadir' }} notas
           </button>
         </div>
-        
+
+        <!-- Sección de edición de notas cuando el personaje está en modo edición -->
         <div *ngIf="editingNotesId === favorite.id" class="notes-edit">
-  <textarea [(ngModel)]="updatedNotes"></textarea>
-  <div class="notes-actions">
-    <button (click)="saveNotes(favorite)" class="btn-save">
-      <i class="fas fa-save"></i> Guardar
-    </button>
-    <button (click)="cancelEditing()" class="btn-cancel">
-      <i class="fas fa-times"></i> Cancelar
-    </button>
-  </div>
-</div>
-        
-        <button 
-          (click)="favoritesService.removeFavorite(favorite.id)"
-          class="remove-btn"
-        >
+          <!-- Textarea vinculado con ngModel para editar las notas -->
+          <textarea [(ngModel)]="updatedNotes"></textarea>
+
+          <div class="notes-actions">
+            <!-- Botón para guardar las notas editadas -->
+            <button (click)="saveNotes(favorite)" class="btn-save">
+              <i class="fas fa-save"></i> Guardar
+            </button>
+            <!-- Botón para cancelar la edición -->
+            <button (click)="cancelEditing()" class="btn-cancel">
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón para eliminar el personaje de favoritos -->
+        <button (click)="favoritesService.removeFavorite(favorite.id)" class="remove-btn">
           Eliminar de favoritos
         </button>
       </div>

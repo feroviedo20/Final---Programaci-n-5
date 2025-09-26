@@ -1,18 +1,38 @@
+<!-- Contenedor principal del perfil de usuario -->
+<!-- Se muestra SOLO si existe un usuario autenticado (authService.currentUserValue) -->
 <div class="container mt-5" *ngIf="authService.currentUserValue">
   <div class="row justify-content-center">
     <div class="col-md-6">
+
+      <!-- Tarjeta Bootstrap para mostrar los datos del usuario -->
       <div class="card">
+
+        <!-- Cabecera de la tarjeta -->
         <div class="card-header">
           <h3 class="text-center">Perfil de usuario</h3>
         </div>
+
+        <!-- Cuerpo de la tarjeta -->
         <div class="card-body">
           <div class="mb-3">
+
+            <!-- Muestra el email del usuario actual -->
             <p><strong>Email:</strong> {{ authService.currentUserValue.email }}</p>
-            <!-- Ahora podemos mostrar el username directamente de currentUserValue -->
-            <p *ngIf="authService.currentUserValue.username"><strong>Nombre de usuario:</strong> {{ authService.currentUserValue.username }}</p>
+
+            <!-- Si el usuario tiene un nombre de usuario definido, se muestra -->
+            <p *ngIf="authService.currentUserValue.username">
+              <strong>Nombre de usuario:</strong> {{ authService.currentUserValue.username }}
+            </p>
+
+            <!-- Muestra el UID del usuario (identificador único en Firebase) -->
             <p><strong>UID:</strong> {{ authService.currentUserValue.uid }}</p>
           </div>
-          <button class="btn btn-danger w-100" (click)="authService.logout()">Cerrar sesión</button>
+
+          <!-- Botón para cerrar sesión -->
+          <!-- Llama al método logout() del AuthService -->
+          <button class="btn btn-danger w-100" (click)="authService.logout()">
+            Cerrar sesión
+          </button>
         </div>
       </div>
     </div>

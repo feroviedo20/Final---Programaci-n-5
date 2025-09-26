@@ -1,123 +1,216 @@
-/* CONTENEDOR PRINCIPAL */
+/* ============================
+   CONTENEDOR PRINCIPAL
+   ============================ */
 .full-height {
   min-height: 100vh;
+  /* Ocupa toda la altura visible del navegador */
   display: flex;
+  /* Usa flexbox para centrar contenido */
   align-items: center;
+  /* Centra verticalmente */
   justify-content: center;
+  /* Centra horizontalmente */
   padding: 4rem 2rem;
+  /* Espaciado interno: 4 arriba/abajo, 2 a los lados */
   background-color: #0b0f1a;
-  background-image: 
+  /* Fondo oscuro base */
+  background-image:
     radial-gradient(circle at 20% 30%, rgba(0, 192, 255, 0.15), transparent 30%),
+    /* Efecto luminoso azul en la esquina superior izquierda */
     radial-gradient(circle at 80% 70%, rgba(155, 89, 182, 0.15), transparent 30%);
+  /* Efecto luminoso violeta en la esquina inferior derecha */
   background-size: cover;
+  /* Hace que el fondo cubra todo el contenedor */
 }
 
-/* TARJETA PRINCIPAL */
+/* ============================
+   TARJETA PRINCIPAL
+   ============================ */
 .card {
   max-width: 500px;
+  /* Ancho máximo de la tarjeta */
   width: 100%;
+  /* Ocupa todo el ancho disponible hasta el máximo */
   background: rgba(23, 33, 54, 0.95);
+  /* Fondo semitransparente con efecto de "vidrio" */
   border-radius: 16px;
+  /* Bordes redondeados */
   padding: 2.5rem;
+  /* Espaciado interno uniforme */
   box-shadow: 0 8px 25px rgba(0, 192, 255, 0.3);
+  /* Sombra azulada */
   border: 1px solid rgba(0, 192, 255, 0.2);
+  /* Borde tenue azul */
   animation: fadeIn 0.6s ease-in;
+  /* Animación de entrada suave */
 }
 
-/* CABECERA */
+/* ============================
+   CABECERA DE LA TARJETA
+   ============================ */
 .card-header {
   text-align: center;
+  /* Centra el texto */
   margin-bottom: 2rem;
+  /* Espacio inferior */
 }
 
 .card-header h3 {
   font-family: 'Get Schwifty', cursive;
+  /* Fuente personalizada */
   font-size: 2rem;
+  /* Tamaño grande */
   color: #00c0ff;
+  /* Azul vibrante */
   text-shadow: 0 0 10px #9b59b6;
+  /* Efecto de brillo violeta */
 }
 
-/* FORMULARIO */
+/* ============================
+   FORMULARIO
+   ============================ */
 .form-label {
   color: #c2e9ff;
+  /* Azul claro */
   font-weight: 600;
+  /* Negrita media */
   margin-bottom: 0.5rem;
+  /* Separación con el input */
   display: block;
+  /* Ocupa toda la línea */
 }
 
 .form-control {
   width: 100%;
+  /* Ocupa todo el ancho disponible */
   padding: 0.8rem 1rem;
+  /* Espaciado interno */
   background-color: #111d33;
+  /* Fondo oscuro */
   border: 1px solid rgba(0, 192, 255, 0.4);
+  /* Borde azul translúcido */
   color: white;
+  /* Texto blanco */
   border-radius: 8px;
+  /* Bordes redondeados */
   font-size: 1rem;
+  /* Tamaño de letra estándar */
   transition: 0.3s ease;
+  /* Transiciones suaves */
 }
 
 .form-control:focus {
   border-color: #00c0ff;
+  /* Azul intenso al enfocar */
   box-shadow: 0 0 0 4px rgba(0, 192, 255, 0.2);
+  /* Resaltado azul brillante */
   outline: none;
+  /* Quita borde por defecto */
 }
 
-/* BOTÓN */
+/* ============================
+   BOTÓN PRINCIPAL
+   ============================ */
 .btn-primary {
   background: linear-gradient(135deg, #9b59b6, #00c0ff);
+  /* Degradado violeta → azul */
   color: white;
+  /* Texto blanco */
   font-weight: bold;
+  /* Texto en negrita */
   padding: 1rem;
+  /* Tamaño del botón */
   width: 100%;
+  /* Botón de ancho completo */
   border-radius: 8px;
+  /* Bordes redondeados */
   border: none;
+  /* Sin borde extra */
   transition: 0.3s ease;
+  /* Animación suave en hover */
   margin-top: 1rem;
+  /* Espacio superior */
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
+  /* Eleva ligeramente el botón */
   box-shadow: 0 4px 15px rgba(0, 192, 255, 0.5);
+  /* Sombra más intensa */
 }
 
-/* MENSAJES */
+/* ============================
+   MENSAJES DE ALERTA
+   ============================ */
 .alert {
   background: rgba(255, 56, 96, 0.2);
+  /* Fondo semitransparente rojo/rosado */
   color: #ff3860;
+  /* Texto rojo fuerte */
   padding: 1rem;
+  /* Espaciado interno */
   border-radius: 8px;
+  /* Bordes redondeados */
   margin-top: 1rem;
+  /* Separación superior */
   text-align: center;
+  /* Texto centrado */
   border: 1px solid #ff3860;
+  /* Borde rojo */
 }
 
-/* TEXTO DE ENLACE */
+/* ============================
+   TEXTO DE ENLACE
+   ============================ */
 .text-center {
   text-align: center;
+  /* Centrado horizontal */
   margin-top: 2rem;
+  /* Espacio superior */
   color: #ccc;
+  /* Texto gris claro */
 }
 
 .text-center a {
   color: #9b59b6;
+  /* Violeta */
   text-decoration: none;
+  /* Quita subrayado */
   font-weight: bold;
+  /* Negrita */
   transition: 0.3s;
+  /* Transición en hover */
 }
 
 .text-center a:hover {
   color: #00c0ff;
+  /* Cambia a azul al pasar el mouse */
 }
 
-/* ANIMACIÓN */
+/* ============================
+   ANIMACIÓN DE ENTRADA
+   ============================ */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* Empieza transparente y desplazado */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Termina visible y en posición normal */
 }
 
-/* RESPONSIVE */
+/* ============================
+   RESPONSIVE (pantallas chicas)
+   ============================ */
 @media (max-width: 768px) {
   .card {
     padding: 2rem;
+    /* Reduce el padding en móviles/tablets */
   }
 }

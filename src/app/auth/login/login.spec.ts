@@ -1,22 +1,26 @@
+// Importa las utilidades de testing de Angular
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+// Importa el componente LoginComponent (asegúrate que el archivo se llama login.component.ts)
+import { LoginComponent } from './login.component';
 
-import { Login } from './login';
+// Describe el grupo de pruebas para el componente LoginComponent
+describe('LoginComponent', () => {
+  let component: LoginComponent; // Instancia del componente a probar
+  let fixture: ComponentFixture<LoginComponent>; // Fixture para manipular el DOM y el componente
 
-describe('Login', () => {
-  let component: Login;
-  let fixture: ComponentFixture<Login>;
-
+  // Antes de cada prueba, configura el módulo de pruebas
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login]
+      declarations: [LoginComponent] // Declara el componente en el módulo de pruebas
     })
-    .compileComponents();
+      .compileComponents(); // Compila los componentes
 
-    fixture = TestBed.createComponent(Login);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture = TestBed.createComponent(LoginComponent); // Crea una instancia del componente
+    component = fixture.componentInstance; // Obtiene la instancia del componente
+    fixture.detectChanges(); // Detecta los cambios iniciales
   });
 
+  // Prueba que el componente se crea correctamente
   it('should create', () => {
     expect(component).toBeTruthy();
   });

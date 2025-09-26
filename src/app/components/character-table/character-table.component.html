@@ -1,26 +1,25 @@
+<!-- Contenedor de búsqueda -->
 <div class="search-container">
-  <input
-    type="text"
-    placeholder="Buscar personaje..."
-    [(ngModel)]="searchTerm"
-    (keyup.enter)="searchCharacters(searchTerm)"
-    #searchInput
-  >
+  <input type="text" placeholder="Buscar personaje..." [(ngModel)]="searchTerm"
+    (keyup.enter)="searchCharacters(searchTerm)" #searchInput>
   <button (click)="searchCharacters(searchTerm)">
     <i class="fas fa-search"></i> Buscar
   </button>
 </div>
 
+<!-- Estado de carga -->
 <div *ngIf="isLoading" class="loading">
   <div class="spinner"></div>
   <p>Cargando personajes...</p>
 </div>
 
+<!-- Estado de error -->
 <div *ngIf="errorMessage" class="error-message">
   <p>{{ errorMessage }}</p>
   <button (click)="loadCharacters()">Reintentar</button>
 </div>
 
+<!-- Tabla de personajes cuando hay resultados -->
 <div *ngIf="!isLoading && filteredCharacters && filteredCharacters.length > 0">
   <table class="character-table">
     <thead>
@@ -34,41 +33,39 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Itera sobre la lista de personajes filtrados -->
       <tr *ngFor="let character of filteredCharacters">
         <td>
-          <img 
-            [src]="character.image" 
-            [alt]="character.name"
-            (load)="handleImageLoad(character)"
-            (error)="handleImageError($event, character)"
-            [class.loaded]="character.imageLoaded"
-            class="character-image"
-          >
+          <!-- Imagen del personaje con eventos de carga y error -->
+          <img [src]="character.image" [alt]="character.name" (load)="handleImageLoad(character)"
+            (error)="handleImageError($event, character)" [class.loaded]="character.imageLoaded"
+            class="character-image">
         </td>
+        <!-- Datos básicos del personaje -->
         <td>{{ character.name }}</td>
         <td>{{ character.status }}</td>
         <td>{{ character.species }}</td>
+        <!-- Nombre de la ubicación (se carga al pasar el mouse) -->
         <td (mouseenter)="loadLocation(character)">
           {{ character.locationName }}
         </td>
         <td class="actions">
-          <button 
-            (click)="toggleFavorite(character)"
-            [class.favorite]="character.isFavorite"
-            class="favorite-btn"
-            title="{{ character.isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos' }}"
-          >
+          <button (click)="toggleFavorite(character)" [class.favorite]="character.isFavorite" class="favorite-btn"
+            title="{{ character.isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos' }}">
             {{ character.isFavorite ? '❤️' : '♡' }}
           </button>
-          
+
+          <!-- Notas del personaje (solo si es favorito) -->
           <div *ngIf="character.isFavorite" class="notes-section">
+            <!-- Si NO está editando notas -->
             <div *ngIf="showNotesInputId !== character.id" class="notes-container">
               <p *ngIf="character.notes">{{ character.notes }}</p>
               <button (click)="startEditingNotes(character)" class="btn-small">
                 {{ character.notes ? '✏️ Editar' : '➕ Añadir' }} notas
               </button>
             </div>
-            
+
+            <!-- Si está editando notas -->
             <div *ngIf="showNotesInputId === character.id" class="notes-input">
               <textarea [(ngModel)]="notesText" placeholder="Tus notas sobre este personaje..."></textarea>
               <div class="notes-actions">

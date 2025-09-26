@@ -1,35 +1,49 @@
+<!-- Barra de navegación principal con clases de Bootstrap para estilo -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container">
+    <!-- Marca o logo de la aplicación, enlazado a la ruta raíz -->
     <a class="navbar-brand" routerLink="/">
       <i class="fas fa-portal me-2"></i> Rick & Morty App
     </a>
 
+    <!-- Botón hamburguesa visible en pantallas pequeñas para desplegar el menú -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Contenedor del menú colapsable -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto"> <!-- ms-auto empuja el menú hacia la derecha -->
+
+        <!-- Link a la ruta raíz ("/"), activo solo cuando la ruta es exactamente "/" -->
         <a class="nav-link" routerLink="/" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}">Personajes</a>
 
-        <!-- Usamos el async pipe con currentUser$ para mayor reactividad -->
+        <!-- ngIf con async pipe: si hay un usuario autenticado, se guarda en 'user';
+             si no lo hay, se muestra el bloque notLoggedIn -->
         <ng-container *ngIf="currentUser$ | async as user; else notLoggedIn">
+          <!-- Link hacia la sección de favoritos -->
           <a class="nav-link" routerLink="/favorites" routerLinkActive="active">Favoritos</a>
+
+          <!-- Link hacia el perfil del usuario -->
           <a class="nav-link" routerLink="/profile" routerLinkActive="active">
-            <!-- Muestra username o email si username no está disponible -->
+            <!-- Muestra el username si existe, si no el email -->
             Perfil ({{ user.username || user.email }})
           </a>
-          <!-- Tu botón de cerrar sesión -->
+
+          <!-- Botón de cerrar sesión, ejecuta la función logout() al hacer click -->
           <a class="nav-link" (click)="logout()" style="cursor: pointer;">
             <i class="fas fa-sign-out-alt me-1"></i> Cerrar sesión
           </a>
         </ng-container>
 
+        <!-- Bloque alternativo que se muestra si el usuario no está autenticado -->
         <ng-template #notLoggedIn>
+          <!-- Link a la página de inicio de sesión -->
           <a class="nav-link" routerLink="/login" routerLinkActive="active">
             <i class="fas fa-sign-in-alt me-1"></i> Iniciar sesión
           </a>
+          <!-- Link a la página de registro -->
           <a class="nav-link" routerLink="/register" routerLinkActive="active">
             <i class="fas fa-user-plus me-1"></i> Registrarse
           </a>
@@ -39,6 +53,7 @@
   </div>
 </nav>
 
+<!-- Contenedor principal donde se renderizan las vistas según la ruta -->
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>

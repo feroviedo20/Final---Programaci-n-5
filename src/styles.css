@@ -1,5 +1,17 @@
+/*
+============================================
+Archivo: styles.css (global de la aplicación)
+
+Este archivo define los estilos globales de la app.
+En general:
+Este archivo controla la apariencia global y la identidad visual
+del proyecto, asegurando consistencia en todos los componentes.
+============================================
+*/
+
 /* ============== FUENTES Y VARIABLES ============== */
 @import url('https://fonts.cdnfonts.com/css/get-schwifty');
+/* Fuente especial para títulos */
 
 :root {
   /* Paleta de colores */
@@ -10,7 +22,7 @@
   --neon-pink: #ff00aa;
   --error-red: #ff3860;
   --wubba-lubba: #f39c12;
-  
+
   /* Espaciados */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -18,7 +30,7 @@
   --space-lg: 2rem;
   --space-xl: 3rem;
   --space-xxl: 3.5rem;
-  
+
   /* Bordes */
   --radius-sm: 8px;
   --radius-md: 15px;
@@ -28,30 +40,47 @@
 /* ============== RESET Y ESTILOS BASE ============== */
 * {
   box-sizing: border-box;
+  /* Incluye borde y padding en el cálculo de ancho/alto */
   margin: 0;
   padding: 0;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Fuente base */
   line-height: 1.6;
   color: #fff;
   background-color: var(--dark-space);
-  background-image: 
+  /* Fondo oscuro tipo espacio */
+  background-image:
     radial-gradient(circle at 20% 30%, rgba(0, 192, 255, 0.1) 0%, transparent 25%),
+    /* Efecto de luces */
     url('https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+  /* Imagen de fondo */
   background-attachment: fixed;
+  /* Fondo fijo al hacer scroll */
   background-size: cover;
+  /* La imagen cubre toda la pantalla */
   padding: var(--space-md);
+  /* Espaciado general */
 }
 
 /* ============== TIPOGRAFÍA ============== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Get Schwifty', cursive;
+  /* Fuente especial para títulos */
   text-transform: uppercase;
+  /* Títulos en mayúsculas */
   letter-spacing: 2px;
+  /* Espaciado entre letras */
   margin-bottom: var(--space-md);
   text-shadow: 0 0 10px rgba(0, 192, 255, 0.7);
+  /* Brillo en los títulos */
   line-height: 1.2;
 }
 
@@ -59,13 +88,27 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes glow {
   from {
     text-shadow: 0 0 10px rgba(0, 192, 255, 0.7);
+    /* Brillo suave */
   }
+
   to {
     text-shadow: 0 0 15px rgba(0, 192, 255, 0.9);
+    /* Brillo más intenso */
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    /* Comienza invisible */
+    transform: translateY(10px);
+    /* Leve movimiento hacia abajo */
+  }
+
+  to {
+    opacity: 1;
+    /* Se vuelve visible */
+    transform: translateY(0);
+    /* Vuelve a su posición original */
+  }
 }

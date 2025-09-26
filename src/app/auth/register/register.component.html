@@ -1,44 +1,92 @@
+<!-- ================================
+     CONTENEDOR PRINCIPAL
+     ================================
+     - Ocupa toda la pantalla (clase .full-height de tu CSS).
+     - Centra la tarjeta de registro.
+-->
 <div class="full-height">
+  <!-- ================================
+       TARJETA DE REGISTRO
+       ================================
+       - Contiene el formulario dentro de un estilo tipo "card".
+  -->
   <div class="card">
+
+    <!-- CABECERA DE LA TARJETA -->
     <div class="card-header">
       <h3 class="text-center">Registro</h3>
     </div>
+
+    <!-- CUERPO DE LA TARJETA -->
     <div class="card-body">
+
+      <!-- ================================
+           FORMULARIO DE REGISTRO
+           ================================
+           - Asociado al FormGroup "registerForm".
+           - Envía los datos al método onSubmit().
+      -->
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <!-- CAMPO: Nombre de usuario -->
         <label for="username" class="form-label">Nombre de usuario</label>
         <input type="text" id="username" class="form-control" formControlName="username">
-        <!-- Puedes añadir mensajes de error para la validación de username -->
+
+        <!-- VALIDACIONES: Nombre de usuario -->
         <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="text-danger">
-          <div *ngIf="username?.errors?.['required']">El nombre de usuario es obligatorio.</div>
-          <div *ngIf="username?.errors?.['minlength']">El nombre de usuario debe tener al menos 3 caracteres.</div>
+          <div *ngIf="username?.errors?.['required']">
+            El nombre de usuario es obligatorio.
+          </div>
+          <div *ngIf="username?.errors?.['minlength']">
+            El nombre de usuario debe tener al menos 3 caracteres.
+          </div>
         </div>
 
+        <!-- CAMPO: Email -->
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" class="form-control" formControlName="email">
-        <!-- Mensajes de error para email -->
+
+        <!-- VALIDACIONES: Email -->
         <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
-          <div *ngIf="email?.errors?.['required']">El email es obligatorio.</div>
-          <div *ngIf="email?.errors?.['email']">El formato del email no es válido.</div>
+          <div *ngIf="email?.errors?.['required']">
+            El email es obligatorio.
+          </div>
+          <div *ngIf="email?.errors?.['email']">
+            El formato del email no es válido.
+          </div>
         </div>
 
+        <!-- CAMPO: Contraseña -->
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" id="password" class="form-control" formControlName="password">
-        <!-- Mensajes de error para password -->
+
+        <!-- VALIDACIONES: Contraseña -->
         <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
-          <div *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</div>
-          <div *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+          <div *ngIf="password?.errors?.['required']">
+            La contraseña es obligatoria.
+          </div>
+          <div *ngIf="password?.errors?.['minlength']">
+            La contraseña debe tener al menos 6 caracteres.
+          </div>
         </div>
 
-        <!-- Mensaje de error general del servidor o del servicio -->
+        <!-- MENSAJE DE ERROR GENERAL -->
         <div *ngIf="errorMessage" class="alert alert-danger mt-3">
           {{ errorMessage }}
         </div>
 
-        <button type="submit" class="btn-primary" [disabled]="!registerForm.valid">Registrarse</button>
+        <!-- BOTÓN DE ENVÍO -->
+        <button type="submit" class="btn-primary" [disabled]="!registerForm.valid">
+          Registrarse
+        </button>
       </form>
 
+      <!-- ENLACE PARA USUARIOS REGISTRADOS -->
       <div class="text-center mt-3">
-        <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+        <p>
+          ¿Ya tienes una cuenta?
+          <a routerLink="/login">Inicia sesión</a>
+        </p>
       </div>
     </div>
   </div>

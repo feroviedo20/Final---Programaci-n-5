@@ -1,89 +1,199 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Define que el documento es HTML5 -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.3.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.3.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.3.0/firebase-performance-compat.js"></script>
-    <!-- 
+<head>
+  <meta charset="utf-8"> <!-- Codificación de caracteres UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Escala adaptable en dispositivos móviles -->
+  <title>Welcome to Firebase Hosting</title> <!-- Título de la pestaña -->
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/12.3.0/firebase-app-compat.js"></script> <!-- Núcleo de Firebase -->
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/12.3.0/firebase-auth-compat.js"></script> <!-- Autenticación -->
+  <script defer src="/__/firebase/12.3.0/firebase-database-compat.js"></script> <!-- Realtime Database -->
+  <script defer src="/__/firebase/12.3.0/firebase-firestore-compat.js"></script> <!-- Firestore -->
+  <script defer src="/__/firebase/12.3.0/firebase-functions-compat.js"></script> <!-- Cloud Functions -->
+  <script defer src="/__/firebase/12.3.0/firebase-messaging-compat.js"></script> <!-- Cloud Messaging -->
+  <script defer src="/__/firebase/12.3.0/firebase-storage-compat.js"></script> <!-- Cloud Storage -->
+  <script defer src="/__/firebase/12.3.0/firebase-analytics-compat.js"></script> <!-- Analytics -->
+  <script defer src="/__/firebase/12.3.0/firebase-remote-config-compat.js"></script> <!-- Remote Config -->
+  <script defer src="/__/firebase/12.3.0/firebase-performance-compat.js"></script> <!-- Performance Monitoring -->
+  <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script> <!-- Inicialización de Firebase -->
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+  <style media="screen">
+    /* Estilos principales */
+
+    /* Estilos generales del cuerpo */
+    body {
+      background: #ECEFF1;
+      /* Fondo gris claro */
+      color: rgba(0, 0, 0, 0.87);
+      /* Color del texto */
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      /* Tipografía */
+      margin: 0;
+      /* Sin márgenes */
+      padding: 0;
+      /* Sin relleno */
+    }
+
+    /* Caja principal del mensaje */
+    #message {
+      background: white;
+      /* Fondo blanco */
+      max-width: 360px;
+      /* Ancho máximo */
+      margin: 100px auto 16px;
+      /* Centrado */
+      padding: 32px 24px;
+      /* Relleno interno */
+      border-radius: 3px;
+      /* Bordes redondeados */
+    }
+
+    /* Subtítulo */
+    #message h2 {
+      color: #ffa100;
+      /* Color naranja */
+      font-weight: bold;
+      /* Negrita */
+      font-size: 16px;
+      /* Tamaño texto */
+      margin: 0 0 8px;
+      /* Márgenes */
+    }
+
+    /* Título principal */
+    #message h1 {
+      font-size: 22px;
+      /* Más grande */
+      font-weight: 300;
+      /* Peso ligero */
+      color: rgba(0, 0, 0, 0.6);
+      /* Gris tenue */
+      margin: 0 0 16px;
+      /* Márgenes */
+    }
+
+    /* Párrafos */
+    #message p {
+      line-height: 140%;
+      /* Espaciado de línea */
+      margin: 16px 0 24px;
+      /* Márgenes */
+      font-size: 14px;
+      /* Tamaño de letra */
+    }
+
+    /* Enlace principal */
+    #message a {
+      display: block;
+      /* Ocupa todo el ancho */
+      text-align: center;
+      /* Centrado */
+      background: #039be5;
+      /* Azul */
+      text-transform: uppercase;
+      /* Mayúsculas */
+      text-decoration: none;
+      /* Sin subrayado */
+      color: white;
+      /* Texto blanco */
+      padding: 16px;
+      /* Relleno */
+      border-radius: 4px;
+      /* Bordes redondeados */
+    }
+
+    /* Sombras para caja y enlace */
+    #message,
+    #message a {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    /* Texto de carga */
+    #load {
+      color: rgba(0, 0, 0, 0.4);
+      /* Gris claro */
+      text-align: center;
+      /* Centrado */
+      font-size: 13px;
+      /* Pequeño */
+    }
+
+    /* Ajustes para pantallas pequeñas */
+    @media (max-width: 600px) {
+
+      body,
+      #message {
+        margin-top: 0;
+        /* Elimina margen superior */
+        background: white;
+        /* Fondo blanco */
+        box-shadow: none;
+        /* Quita sombra */
       }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      body {
+        border-top: 16px solid #ffa100;
+        /* Barra superior naranja */
+      }
+    }
+  </style> <!-- Fin estilos -->
+</head>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+<body>
+  <!-- Contenedor principal -->
+  <div id="message">
+    <h2>Welcome</h2> <!-- Subtítulo -->
+    <h1>Firebase Hosting Setup Complete</h1> <!-- Mensaje principal -->
+    <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something
+      extraordinary!</p> <!-- Descripción -->
+    <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <!-- Botón de enlace -->
+  </div>
+  <p id="load">Firebase SDK Loading&hellip;</p> <!-- Texto de carga -->
+
+  <script> /* Script para verificar SDK */
+    document.addEventListener('DOMContentLoaded', function () {
+      const loadEl = document.querySelector('#load');
+
+      // Ejemplos de uso del SDK (comentados)
+      // firebase.auth().onAuthStateChanged(user => { });
+      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      // firebase.firestore().doc('/foo/bar').get().then(() => { });
+      // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+      // firebase.messaging().requestPermission().then(() => { });
+      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      // firebase.analytics(); // call to activate
+      // firebase.analytics().logEvent('tutorial_completed');
+      // firebase.performance(); // call to activate
+
+      try {
+        let app = firebase.app(); /* Obtiene la instancia de Firebase */
+        let features = [
+          'auth',
+          'database',
+          'firestore',
+          'functions',
+          'messaging',
+          'storage',
+          'analytics',
+          'remoteConfig',
+          'performance',
+        ].filter(feature => typeof app[feature] === 'function'); /* Filtra funciones disponibles */
+        loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`; /* Muestra las funciones cargadas */
+      } catch (e) {
+        console.error(e); /* Error en consola */
+        loadEl.textContent = 'Error loading the Firebase SDK, check the console.'; /* Mensaje de error */
+      }
+    });
+  </script>
+</body>
+
 </html>
